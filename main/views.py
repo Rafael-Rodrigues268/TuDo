@@ -14,3 +14,34 @@ class TaskList(ListView):
 
     
  
+def task_list(request):
+    tarefas = Task.objects.all()
+    context = {
+        "tarefas":tarefas,
+        "Titulo_pagina": 'Quest_RPG_RealLife'
+        
+    }
+    return render (request, 'Task/task_list.html', context)
+
+
+
+ 
+def task_completas(request):
+    tarefas = Task.objects.filter(concluida=1)
+    context = {
+        "tarefas":tarefas,
+        "Titulo_pagina": 'Quest_RPG_RealLife_concluidas'
+        
+    }
+    return render (request, 'Task/task_list.html', context)
+
+ 
+def task_imcompletas(request):
+    tarefas = Task.objects.filter(concluida=0)
+    context = {
+        "tarefas":tarefas,
+        "Titulo_pagina": 'Quest_RPG_RealLife_imcompletas'
+        
+    }
+    return render (request, 'Task/task_list.html', context)
+
